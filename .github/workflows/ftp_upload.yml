@@ -1,0 +1,30 @@
+name: CI -> Deploy to My website
+on:
+  push:
+    branches: [ dist ]
+jobs:
+  deploy:
+    name: Deploy 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@main
+      - name: Sync FRONT files to hosting
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER_WWW }}
+          password: ${{ secrets.FTP_PASS_WWW }}
+          local-dir: www/Billard_ENSG/
+          server-dir: www/Billard_ENSG/
+      - name: Sync BACK files to hosting
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER_SERVER }}
+          password: ${{ secrets.FTP_PASS_SERVER }}
+          local-dir: server/Billard_ENSG/
+          server-dir: server/Billard_ENSG/
+          exclude: |
+            **/.git*
+            **/.git*/**
