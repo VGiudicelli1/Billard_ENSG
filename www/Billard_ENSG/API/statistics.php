@@ -5,7 +5,7 @@
   $data_in = API_get_data_in([], ["period"=>"day"]);
 
   /*****************************  DATABASE QUERY  *****************************/
-  list($result_day, $err) = query("SELECT `player`, `nb_games`, `nb_win`, `nb_lose`, `D_elo`, `last_elo` FROM `billard_ensg_resume`");
+  list($result_day, $err) = query("SELECT `player`, `class`, `games`, `W`, `L`, `delta_elo`, `last_elo` FROM `view_statistics_day`");
   if ($err) API_send_result_error(ERROR_INTERN);
 
   /*****************************    SEND RESULT   *****************************/
