@@ -1,0 +1,145 @@
+/******************************   FONT-FAMILIES  ******************************/
+@font-face {
+  font-family: agbalumo;
+  src: url("Agbalumo-Regular.ttf");
+}
+
+/******************************    PAGE STYLE    ******************************/
+body {
+  background-color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  font-family: agbalumo;
+  text-align: center;
+  background-color: black;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  padding: 1em;
+}
+
+header div.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3em;
+  transform: translate(-50%, -50%);
+}
+
+header div.button.home {
+  grid-column: 1;
+}
+header div.button.account {
+  grid-column: 4;
+}
+header div.site_name {
+  grid-column: 2;
+  font-size: 1.5em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: agbalumo;
+  text-align: center;
+  background-color: black;
+  height: 1.5em;
+}
+
+footer div.footer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.8em;
+  transform: translate(-50%,-50%);
+}
+
+
+div.content {
+  background-color: gray;
+  padding: 1em;
+  border-radius: 1em;
+  text-align: center;
+  margin: 1em auto;
+  max-width: 30em;
+  margin-bottom: 1.5em;
+}
+
+div.field {
+  border: solid 2px lightgray;
+  border-radius: 1em;
+  margin: 1em auto;
+  padding: 1em;
+}
+
+/******************************    ANIMATIONS    ******************************/
+@keyframes shake {
+  from {transform: translate(5px, 0);}
+  10% {transform: translate(-5px, 0);}
+  20% {transform: translate(4px, 0);}
+  30% {transform: translate(-4px, 0);}
+  40% {transform: translate(3px, 0);}
+  50% {transform: translate(-3px, 0);}
+  60% {transform: translate(2px, 0);}
+  70% {transform: translate(-2px, 0);}
+  80% {transform: translate(1px, 0);}
+  90% {transform: translate(-1px, 0);}
+  100% {transform: translate(0px, 0);}
+}
+*.shake {
+  animation: shake 0.5s;
+}
+
+/******************************     Boutons      ******************************/
+
+div.button {
+  display: inline-block;
+  background-color: green;
+  padding: 0.1em 2em;
+  border-radius: 1em;
+  transition: 0.1s;
+  text-align: center;
+  margin: auto 0.5em;
+  cursor: pointer;
+}
+
+div.button:hover {
+  filter: brightness(105%);
+}
+
+div.button:active {
+  filter: brightness(115%);
+}
+
+div.button.on {
+  background-color: lightgreen;
+}
+
+/******************************       Btn        ******************************/
+
+div.btn {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  filter: drop-shadow(0 0 0.05em #AAA);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+div.btn:hover {
+  filter: drop-shadow(0 0 0.15em #FFF);
+}
+
+/******************************   Formulaires    ******************************/
+
+/* TODO */
