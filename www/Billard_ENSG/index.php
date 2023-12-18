@@ -14,7 +14,19 @@
   <body>
     <?php make_header('Acceuil'); ?>
     <div class="content">
-      <p>Accueil</p>
+      <h1>Statistiques du jour</h1>
+      <table name="stat_day">
+        <tr>
+          <th>Joueur</th>
+          <th>Classe</th>
+          <th>MJ</th>
+          <th>V</th>
+          <th>D</th>
+          <th>Ratio</th>
+          <th>delta elo</th>
+          <th>Elo</th>
+        </tr>
+      </table>
     </div>
   </body>
 </html>
