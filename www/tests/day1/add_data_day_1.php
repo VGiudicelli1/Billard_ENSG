@@ -32,6 +32,8 @@
   <body>
     <?=make_header("Tests");?>
     <div class="content">
+      <h1>Info</h1>
+      Ce script ajoute les données des premiers jours, en simulant une utilisation classique du site. Il échouera si la base de données n'est pas vierge.
       <h1>Résultat du script</h1>
     </div>
   </body>
