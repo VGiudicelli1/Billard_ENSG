@@ -18,6 +18,7 @@
   // TODO
 
   // get elo j1, j2, j3, j4
+  // get nb games j1, j2, j3, j4
   // compute delta elo j1, j2, j3, j4
 
   // Add game
