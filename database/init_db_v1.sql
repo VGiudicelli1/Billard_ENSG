@@ -9,6 +9,7 @@
  */
 
 DROP VIEW IF EXISTS `view_statistics_day`;
+DROP VIEW IF EXISTS `view_statistics_all`;
 
 DROP TABLE IF EXISTS `player_game`;
 DROP TABLE IF EXISTS `game`;
