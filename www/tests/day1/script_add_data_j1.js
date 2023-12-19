@@ -70,7 +70,15 @@ let players = {
   5: ["Vincent", 1],
   6: ["Arthur", 3],
   7: ["Lauris", 3],
-  8: ["Lilian", 4]
+  8: ["Lilian", 3],
+  9: ["Abdelghani", 4],
+  10:["Thomas D", 4],
+  11:["Thomas B", 2],
+  12:["Arnaud", 5],
+  13:["Clément", 5],
+  14:["Louis", 5],
+  15:["Clovis", 1],
+  16:["Karine", 6]
 };
 
 function add_player() {
@@ -111,11 +119,18 @@ function getPlayerId(player) {
 }
 
 let games = [
-  ["2023-12-18 12:30:00", "Paul", null, "Noé", null],
-  ["2023-12-18 12:40:00", "Baptiste", "Tristan", "Vincent", "Arthur"],
-  ["2023-12-18 12:50:00", "Vincent", "Lauris", "Tristan", "Baptiste"],
-  ["2023-12-18 13:00:00", "Arthur", "Lilian", "Vincent", "Lauris"],
-  ["2023-12-18 13:10:00", "Lauris", null, "Baptiste", null]
+  ["2023-12-18 10:30:00", "Paul", null, "Noé", null],
+  ["2023-12-18 10:40:00", "Baptiste", "Tristan", "Vincent", "Arthur"],
+  ["2023-12-18 10:50:00", "Vincent", "Lauris", "Tristan", "Baptiste"],
+  ["2023-12-18 11:00:00", "Arthur", "Lilian", "Vincent", "Lauris"],
+  ["2023-12-18 12:28:00", "Lauris", null, "Baptiste", null],
+  ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
+  ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
+  ["2023-12-18 12:40:00", "Thomas B", "Paul", "Thomas D", "Noé"],
+  ["2023-12-18 12:45:00", "Thomas B", "Paul", "Thomas D", "Noé"],
+  ["2023-12-18 12:50:00", "Thomas D", "Noé", "Thomas B", "Paul"],
+  ["2023-12-18 12:55:00", "Thomas D", "Noé", "Lauris", "Tristan"],
+  ["2023-12-18 13:00:00", "Lilian", null, "Lauris", null],
 ];
 
 function add_game() {
