@@ -1,6 +1,6 @@
 /*
  * Create date: 2023-12-18
- * Last edit  : 2023-12-18
+ * Last edit  : 2023-12-19
  * Publied    : --
  */
 
@@ -30,7 +30,7 @@ CREATE TABLE `player` (
   `id` SERIAL PRIMARY KEY,          -- index PK
   `name` VARCHAR (256) NOT NULL,    -- index UNIQUE
   `class` BIGINT UNSIGNED NOT NULL, -- index FK
-  `elo` DOUBLE NOT NULL               -- no index
+  `elo` DOUBLE NOT NULL DEFAULT 0     -- no index
 );
 
 ALTER TABLE `player` ADD UNIQUE `player_name` (`name`);
@@ -82,5 +82,21 @@ CREATE VIEW `view_statistics_day` AS
   JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   WHERE DATE(`g`.`date`) = CURDATE()
+  GROUP BY `p`.`name`
+;
+
+CREATE VIEW `view_statistics_all` AS
+  SELECT
+  	`p`.`name` AS `player`,
+    `c`.`name` AS `class`,
+    COUNT(*) AS `games`,
+    COUNT(case `pg`.`delta_elo` > 0 when 1 then 1 else null end) AS `W`,
+  	COUNT(case `pg`.`delta_elo` <= 0 when 1 then 1 else null end) AS `L`,
+    SUM(`pg`.`delta_elo`) AS `delta_elo`,
+    `p`.`elo` AS `last_elo`
+  FROM `player_game` AS `pg`
+  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
+  JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
+  JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   GROUP BY `p`.`name`
 ;
