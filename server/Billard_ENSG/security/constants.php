@@ -7,6 +7,9 @@
   const ERROR_NOT_DEVELOPED = 8;
   const ERROR_WRONG_MODE    = 16;
 
+  const VALUE_NAME = 32;
+  const VALUE_CLASS = 64;
+
 
   /*****************************  TO JAVASCRIPT   *****************************/
 
@@ -17,6 +20,9 @@
       const ERROR_WRONG_VALUE   = <?=ERROR_WRONG_VALUE  ?>;
       const ERROR_NOT_DEVELOPED = <?=ERROR_NOT_DEVELOPED?>;
       const ERROR_WRONG_MODE    = <?=ERROR_WRONG_VALUE  ?>;
+
+      const VALUE_CLASS         = <?=VALUE_CLASS        ?>;
+      const VALUE_NAME          = <?=VALUE_NAME         ?>;
     </script>
   <?php }
  ?>
