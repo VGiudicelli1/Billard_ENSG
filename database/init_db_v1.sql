@@ -84,6 +84,7 @@ CREATE VIEW `view_statistics_day` AS
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   WHERE DATE(`g`.`date`) = CURDATE()
   GROUP BY `p`.`name`
+  ORDER BY `delta_elo` DESC
 ;
 
 CREATE VIEW `view_statistics_all` AS
@@ -100,4 +101,5 @@ CREATE VIEW `view_statistics_all` AS
   JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   GROUP BY `p`.`name`
+  ORDER BY `delta_elo` DESC
 ;
