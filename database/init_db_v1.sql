@@ -9,6 +9,7 @@
  */
 
 DROP VIEW IF EXISTS `view_statistics_day`;
+DROP VIEW IF EXISTS `view_statistics_week`;
 DROP VIEW IF EXISTS `view_statistics_all`;
 
 DROP TABLE IF EXISTS `player_game`;
@@ -82,10 +83,29 @@ CREATE VIEW `view_statistics_day` AS
   JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
   JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
-  WHERE DATE(`g`.`date`) = CURDATE()
+  WHERE DATE(`g`.`date`) = CURRENT_DATE()
   GROUP BY `p`.`name`
   ORDER BY `delta_elo` DESC
 ;
+
+CREATE VIEW `view_statistics_week` AS
+  SELECT
+  	`p`.`name` AS `player`,
+    `c`.`name` AS `class`,
+    COUNT(*) AS `games`,
+    COUNT(case `pg`.`delta_elo` > 0 when 1 then 1 else null end) AS `W`,
+  	COUNT(case `pg`.`delta_elo` <= 0 when 1 then 1 else null end) AS `L`,
+    SUM(`pg`.`delta_elo`) AS `delta_elo`,
+    `p`.`elo` AS `last_elo`
+  FROM `player_game` AS `pg`
+  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
+  JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
+  JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
+  WHERE WEEK(`g`.`date`) = WEEK(CURRENT_DATE())
+  GROUP BY `p`.`name`
+  ORDER BY `delta_elo` DESC
+;
+
 
 CREATE VIEW `view_statistics_all` AS
   SELECT

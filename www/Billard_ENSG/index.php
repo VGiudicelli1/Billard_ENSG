@@ -14,8 +14,34 @@
   <body>
     <?php make_header('Acceuil'); ?>
     <div class="content">
-      <h1>Statistiques du jour</h1>
+      <h1>Aujourd'hui</h1>
       <table name="stat_day">
+        <tr>
+          <th>Joueur</th>
+          <th>Classe</th>
+          <th>MJ</th>
+          <th>V</th>
+          <th>D</th>
+          <th>Ratio</th>
+          <th>delta elo</th>
+          <th>Elo</th>
+        </tr>
+      </table>
+      <h1>Cette semaine</h1>
+      <table name="stat_week">
+        <tr>
+          <th>Joueur</th>
+          <th>Classe</th>
+          <th>MJ</th>
+          <th>V</th>
+          <th>D</th>
+          <th>Ratio</th>
+          <th>delta elo</th>
+          <th>Elo</th>
+        </tr>
+      </table>
+      <h1>Total</h1>
+      <table name="stat_all">
         <tr>
           <th>Joueur</th>
           <th>Classe</th>
