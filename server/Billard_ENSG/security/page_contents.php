@@ -8,6 +8,7 @@
   <footer>
     <div class="footer-content">
       <a href="mailto:vincent.giudicelli@free.fr">contact</a>
+      <a href="https://github.com/VGiudicelli1/Billard_ENSG"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">contribuer</a>
     </div>
   </footer>
 <?php } ?>

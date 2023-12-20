@@ -21,6 +21,7 @@ header {
   font-family: agbalumo;
   text-align: center;
   background-color: black;
+  color: white;
   display: grid;
   grid-template-columns: auto auto 1fr auto;
   padding: 1em;
@@ -52,7 +53,17 @@ footer {
   font-family: agbalumo;
   text-align: center;
   background-color: black;
+  color: white;
   height: 1.5em;
+}
+footer a {
+  color: lightblue;
+}
+footer img {
+  max-width: 1.5em;
+  max-height: 1.5em;
+  background-color: white;
+  margin: 0 1em 0 2em;
 }
 
 footer div.footer-content {
