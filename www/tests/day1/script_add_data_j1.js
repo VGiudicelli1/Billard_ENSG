@@ -45,6 +45,7 @@ function add_class() {
   fetch_api("add_class.php", {
     name: classe[id]
   }).then(r => {
+    console.log(r);
     if (r.id_class != id) {
       logError("Wrong id returned. Get " + r.id_class + "   attend " + id);
     } else {
@@ -93,6 +94,7 @@ function add_player() {
     name: players[id][0],
     class_id: players[id][1]
   }).then(r => {
+    console.log(r);
     if (r.id_player != id) {
       logError("Wrong id returned. Get " + r.id_player + "   attend " + id);
     } else {
@@ -123,6 +125,7 @@ let games = [
   ["2023-12-18 10:40:00", "Baptiste", "Tristan", "Vincent", "Arthur"],
   ["2023-12-18 10:50:00", "Vincent", "Lauris", "Tristan", "Baptiste"],
   ["2023-12-18 11:00:00", "Arthur", "Lilian", "Vincent", "Lauris"],
+
   ["2023-12-18 12:28:00", "Lauris", null, "Baptiste", null],
   ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
   ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
@@ -131,6 +134,15 @@ let games = [
   ["2023-12-18 12:50:00", "Thomas D", "Noé", "Thomas B", "Paul"],
   ["2023-12-18 12:55:00", "Thomas D", "Noé", "Lauris", "Tristan"],
   ["2023-12-18 13:00:00", "Lilian", null, "Lauris", null],
+
+  ["2023-12-18 15:15:00", "Thomas D", "Abdelghani", "Baptiste", "Lauris"],
+  ["2023-12-18 15:20:00", "Thomas D", "Abdelghani", "Tristan", "Karine"],
+  ["2023-12-18 15:25:00", "Paul", "Noé", "Thomas D", "Abdelghani"],
+  ["2023-12-18 15:30:00", "Vincent", "Lilian", "Paul", "Noé"],
+
+  // classement 1
+  //["2023-12-18 17:11:00", "Paul", null, "Noé", null],
+
 ];
 
 function add_game() {
@@ -147,6 +159,7 @@ function add_game() {
     j3: getPlayerId(games[id][3]),
     j4: getPlayerId(games[id][4])
   }).then(r => {
+    console.log(r);
     logDone("Game added");
     doNext();
   }).catch(err => {

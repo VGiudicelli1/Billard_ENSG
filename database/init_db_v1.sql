@@ -31,7 +31,7 @@ CREATE TABLE `player` (
   `id` SERIAL PRIMARY KEY,          -- index PK
   `name` VARCHAR (256) NOT NULL,    -- index UNIQUE
   `class` BIGINT UNSIGNED NOT NULL, -- index FK
-  `elo` DOUBLE NOT NULL DEFAULT 0     -- no index
+  `elo` DOUBLE NOT NULL DEFAULT 470   -- no index
 );
 
 ALTER TABLE `player` ADD UNIQUE `player_name` (`name`);
