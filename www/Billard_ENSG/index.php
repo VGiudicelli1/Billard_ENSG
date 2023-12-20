@@ -14,6 +14,9 @@
   <body>
     <?php make_header('Acceuil'); ?>
     <div class="content">
+      <div class="button" onclick="document.location.href='./add_game'">
+        Nouvelle partie
+      </div>
       <h1>Aujourd'hui</h1>
       <table name="stat_day">
         <tr>

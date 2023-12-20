@@ -31,6 +31,9 @@
   <body>
     <?php make_header('Ajouter un joueur'); ?>
     <div class="content">
+      <div class="button" onclick="document.location.href='../add_player'">
+        Nouveau joueur
+      </div>
       <h1>Ajouter une partie</h1>
       <form>
         <h2>Vainqueur(s)</h2>
