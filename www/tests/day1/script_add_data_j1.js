@@ -3,7 +3,7 @@ function log(data, key) {
   div.classList.add("log");
   div.classList.add(key);
   div.innerText = data;
-  document.querySelector("div.content").appendChild(div);
+  document.querySelector("div.content")?.appendChild(div);
 }
 
 function logInfo(data) {
