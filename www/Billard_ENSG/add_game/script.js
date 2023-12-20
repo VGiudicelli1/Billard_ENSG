@@ -34,8 +34,7 @@ function submit() {
   /***********************          SEND TO API         ***********************/
 
   fetch_api("add_game.php", data).then(r => {
-    //document.location.href = "..";
-    console.log(r);
+    document.location.href = "..";
   }).catch(err => {
     if (err & ERROR_WRONG_VALUE) {
       console.log("err wrong value");

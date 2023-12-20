@@ -105,7 +105,7 @@
   $game_id = $res[0]["id"];
 
   foreach ([$j1, $j2, $j3, $j4] as $player_id) {
-    if ($player_id < 0) {
+    if ($player_id <= 0) {
       continue;
     }
 
