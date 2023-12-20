@@ -29,7 +29,7 @@
     <script src="./script.js" charset="utf-8" defer></script>
   </head>
   <body>
-    <?php make_header('Ajouter un joueur'); ?>
+    <?php make_header('Ajouter une partie'); ?>
     <div class="content">
       <div class="button" onclick="document.location.href='../add_player'">
         Nouveau joueur
