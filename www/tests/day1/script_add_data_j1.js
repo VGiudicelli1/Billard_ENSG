@@ -128,8 +128,7 @@ let games = [
 
   ["2023-12-18 12:28:00", "Lauris", null, "Baptiste", null],
   ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
-  ["2023-12-18 12:35:00", "Paul", null, "Thomas B", null],
-  ["2023-12-18 12:40:00", "Thomas B", "Paul", "Thomas D", "Noé"],
+  ["2023-12-18 12:40:00", "Atrhur", "Paul", "Thomas D", "Noé"],
   ["2023-12-18 12:45:00", "Thomas B", "Paul", "Thomas D", "Noé"],
   ["2023-12-18 12:50:00", "Thomas D", "Noé", "Thomas B", "Paul"],
   ["2023-12-18 12:55:00", "Thomas D", "Noé", "Lauris", "Tristan"],
@@ -141,6 +140,7 @@ let games = [
   ["2023-12-18 15:30:00", "Vincent", "Lilian", "Paul", "Noé"],
 
   // classement 1
+  //["2023-12-18 17:11:00", "Paul", null, "Noé", null],
   //["2023-12-18 17:11:00", "Paul", null, "Noé", null],
 
 ];

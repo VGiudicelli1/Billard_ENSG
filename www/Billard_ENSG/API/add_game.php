@@ -1,5 +1,6 @@
 <?php include_once("../../../server/Billard_ENSG/security/init.php"); ?>
 <?php
+  include_once("../../../server/Billard_ENSG/compute/compute_elo.php");
 
   /*****************************  VERIFY DATA IN  *****************************/
   $data_in = API_get_data_in(["j1", "j3"], ["j2"=>-1, "j4"=>-1, "date"=>date('Y-m-d h:i:s')]);
@@ -47,47 +48,8 @@
 
   /*****************************    DELTA ELO     *****************************/
 
-  /*
-   * Match classement si au moins un joueur n'est pas classé. Sinon: match elo
-   *
-   * Match classement:
-   *    ∆Elo = ±10 pour les joueurs non classés
-   *    ∆Elo = 0 pour les joueurs classés  !!!! Problème dans la vue décompte des victoires
-   *
-   * Match elo:
-   *    ∆Elo calculé entre l'elo du joueur et l'elo moyen de l'équipe adverse,
-   *    avec k = 20 / n où n est le nombre de joueurs de l'équipe
-   */
-
-  // compute delta elo j1, j2, j3, j4
-  function diffElo($eA, $eB, $n) {
-    return $n * 10 / (1 + pow(10, ($eA-$eB)/400));
-  }
-  $nV = $j2 <= 0 ? 1 : 2;
-  $nD = $j4 <= 0 ? 1 : 2;
-  $eloV = $j2 <= 0 ? $players[$j1]["elo"] : ($players[$j1]["elo"] + $players[$j2]["elo"]) / 2;
-  $eloD = $j4 <= 0 ? $players[$j3]["elo"] : ($players[$j3]["elo"] + $players[$j4]["elo"]) / 2;
-
-  $players[$j1]["delta_elo"] = diffElo($players[$j1]["elo"], $eloD, $nV);
-  if ($j2 > 0) {
-    $players[$j2]["delta_elo"] = diffElo($players[$j2]["elo"], $eloD, $nV);
-  }
-  $players[$j3]["delta_elo"] = -diffElo($players[$j3]["elo"], $eloV, $nD);
-  if ($j4 > 0) {
-    $players[$j4]["delta_elo"] = -diffElo($players[$j4]["elo"], $eloV, $nD);
-  }
-  foreach ([
-    ["p"=>$j1, "w"=>1],
-    ["p"=>$j2, "w"=>1],
-    ["p"=>$j3, "w"=>-1],
-    ["p"=>$j4, "w"=>-1]
-    ] as ["p"=>$p, "w"=>$w]) {
-    if ($p <= 0) {
-      continue;
-    }
-    if ($players[$p]["nb_games"] < 3) {
-      $players[$p]["delta_elo"] = $w*10;
-    }
+  foreach (compute_elo($j1, $j2, $j3, $j4, $players) as $id => $delta_elo) {
+    $players[$id]["delta_elo"] = $delta_elo;
   }
 
   /***************************** UPDATE DATABASE  *****************************/
