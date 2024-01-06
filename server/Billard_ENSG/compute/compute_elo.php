@@ -2,7 +2,7 @@
   function diffElo($eA, $eB, $n) {
     return $n * 10 / (1 + pow(10, ($eA-$eB)/400));
   }
-  function compute_elo($j1, $j2, $j3, $j4, $data) {
+  function compute_elo_v1($j1, $j2, $j3, $j4, $data) {
     /*
      * Match classement si au moins un joueur n'est pas classé. Sinon: match elo
      *
