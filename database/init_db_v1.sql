@@ -11,6 +11,7 @@
 DROP VIEW IF EXISTS `view_statistics_day`;
 DROP VIEW IF EXISTS `view_statistics_week`;
 DROP VIEW IF EXISTS `view_statistics_all`;
+DROP VIEW IF EXISTS `player_game_date`;
 
 DROP TABLE IF EXISTS `player_game`;
 DROP TABLE IF EXISTS `game`;
@@ -122,4 +123,15 @@ CREATE VIEW `view_statistics_all` AS
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   GROUP BY `p`.`name`
   ORDER BY `delta_elo` DESC
+;
+
+CREATE VIEW `player_game_date` AS
+  SELECT
+    `pg`.`player` AS `player`,
+    `pg`.`game` AS `game`,
+    `pg`.`delta_elo` AS `delta_elo`,
+    `pg`.`new_elo` AS `new_elo`,
+    `g`.`date` AS `date`
+  FROM `player_game` AS `pg`
+  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
 ;
