@@ -44,6 +44,10 @@
   }
 
   function connect_db() {
+    if (DB_HOST == "localhost") {
+      // display full errors only if local/test execution (not in prod site)
+      mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    }
     if (isset($GLOBALS["database"])) {
       return;
     }
