@@ -17,7 +17,7 @@
       JOIN `player` AS `p` ON `p`.`id` = `player`
       JOIN `game` AS `g` ON `game` = `g`.`id`
       WHERE `p`.`name` LIKE ?
-      ORDER BY `g`.`date`;",
+      ORDER BY `g`.`date` DESC",
       "s", [$player]
   );
 
