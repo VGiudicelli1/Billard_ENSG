@@ -86,7 +86,7 @@ CREATE VIEW `view_statistics_day` AS
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   WHERE DATE(`g`.`date`) = CURRENT_DATE()
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
 
 CREATE VIEW `view_statistics_week` AS
@@ -104,7 +104,7 @@ CREATE VIEW `view_statistics_week` AS
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   WHERE WEEK(`g`.`date`) = WEEK(CURRENT_DATE())
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
 
 
@@ -122,7 +122,7 @@ CREATE VIEW `view_statistics_all` AS
   JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
 
 CREATE VIEW `player_game_date` AS
