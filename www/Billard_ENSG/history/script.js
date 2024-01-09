@@ -38,3 +38,8 @@ function update() {
 }
 
 update();
+
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  update();
+});
