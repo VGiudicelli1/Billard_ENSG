@@ -4,8 +4,10 @@ function update() {
   }).then(r => {
     console.log(r);
     let table = document.querySelector("table");
-    table.querySelectorAll("tr:not(.title_table)").forEach((tr, i) => {
-      //tr.remove();
+    table.querySelectorAll("tr").forEach((tr, i) => {
+      if (!tr.classList.contains("title_table")) {
+        tr.remove();
+      }
     });
 
     r.history.forEach((line, i) => {
@@ -32,8 +34,6 @@ function update() {
 
       table.appendChild(tr);
     });
-
-
   })
 }
 

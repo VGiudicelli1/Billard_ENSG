@@ -60,7 +60,8 @@
     $j2_id = getPlayerId($j2);
     $j3_id = getPlayerId($j3);
     $j4_id = getPlayerId($j4);
-    $date = date('Y-m-d h:i:s', strtotime($date." ".$heure));
+
+    $date = date('Y-m-d H:i:s', strtotime($date." ".$heure));
 
     // Add game
     list($res, $err) = query("INSERT INTO `game` (`date`) VALUES (?)", "s", [$date]);
