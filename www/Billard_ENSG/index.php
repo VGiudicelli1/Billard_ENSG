@@ -17,6 +17,9 @@
       <div class="button" onclick="document.location.href='./add_game'">
         Nouvelle partie
       </div>
+      <div class="button" onclick="document.location.href='./history'">
+        Historique
+      </div>
       <h1>Aujourd'hui</h1>
       <table name="stat_day">
         <tr>
