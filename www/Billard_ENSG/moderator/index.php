@@ -4,16 +4,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Admin</title>
-    <link rel="stylesheet" href="/Billard_ENSG/css/master.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="/Billard_ENSG/js/script.js" charset="utf-8"></script>
-    <script src="./script.js" charset="utf-8" defer></script>
-  </head>
+  <?=make_head("Moderation")?>
   <body>
-    <?php make_header('Admin'); ?>
+    <?php make_header('Moderation'); ?>
     <div class="content">
       <?php if (isset($_POST["password"]) && $_POST["password"] == ADMIN_PASS): ?>
         <style>
@@ -23,9 +16,12 @@
             grid-template-columns: auto;
           }
         </style>
-        <div class="button"><a href="/Billard_ENSG/API/compute_elo.php">recompute all elo</a></div>
-        <div class="button"><a href="/Billard_ENSG/API/load_csv.php">load csv</a></div>
-        <div class="button"><a>download csv</a></div>
+        <div class="button"><a href="/Billard_ENSG/API/compute_elo.php" target="_blank">recompute all elo</a></div>
+        <div class="button"><a href="/Billard_ENSG/API/load_csv.php" target="_blank">load csv</a></div>
+        <div class="button"><a target="_blank">download csv</a></div>
+        <div class="button">
+          <a href="https://phpmyadmin.alwaysdata.com/phpmyadmin" target="_blank">Database</a>
+        </div>
       <?php else: ?>
         <form class="" method="post">
           <h2>Authentification requise</h2>
