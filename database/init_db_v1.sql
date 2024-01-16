@@ -44,8 +44,10 @@ ALTER TABLE `player`
 
 CREATE TABLE `game` (
   `id` SERIAL PRIMARY KEY,          -- index PK
-  `date` DATETIME NOT NULL          -- index timestamp
+  `date` DATETIME NOT NULL          -- index timestamp & unique
 );
+
+ALTER TABLE `game` ADD UNIQUE `game_date` (`date`);
 
 CREATE TABLE `player_game` (
   `player` BIGINT UNSIGNED NOT NULL, -- index PK && FK
