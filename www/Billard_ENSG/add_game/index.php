@@ -13,7 +13,7 @@
     <select name="<?=$name?>">
       <option value="NULL" selected>Selectionnez un joueur</option>
       <?php foreach ($GLOBALS["players"] as ["id" => $id, "name" => $name, "class"=>$classe, "elo"=>$elo]): ?>
-        <option value="<?=$id?>"><?=$name?> (<?=$classe?>) • <?=$elo?></option>
+        <option value="<?=$id?>"><?=$name?> (<?=$classe?>) • <?=round($elo*10)/10?></option>
       <?php endforeach; ?>
     </select>
   <?php }
