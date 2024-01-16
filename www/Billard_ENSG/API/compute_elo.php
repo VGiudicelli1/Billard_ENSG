@@ -4,7 +4,7 @@
 
   /*****************************  VERIFY DATA IN  *****************************/
   $date_min = date('Y-m-d h:i:s', strtotime(API_get_data_in([], ["from_date"=>0])["from_date"]));
-  
+
   list($ids, $err) = query("SELECT `id` FROM `game` WHERE `date` >= ? ORDER BY `date` ASC", "d", [$date_min]);
   if ($err) {
     API_send_result_error(ERROR_INTERN);
@@ -82,6 +82,11 @@
           "UPDATE `player_game` SET `delta_elo`=?,`new_elo`=? WHERE `player`=? AND `game`=?",
           "dddd",
           [$players[$id]["delta_elo"], $players[$id]["elo"]+$players[$id]["delta_elo"], $id, $id_game]
+        );
+        list($res, $err) = query(
+          "UPDATE `player` SET `elo`=? WHERE `id`=?",
+          "dd",
+          [$players[$id]["elo"]+$players[$id]["delta_elo"], $id]
         );
       }
     }
