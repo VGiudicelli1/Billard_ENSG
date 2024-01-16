@@ -20,7 +20,14 @@
       `player`.`id` AS `id`,
       COUNT(`pg2`.`game`) AS `nb_games`,
       `pg`.`delta_elo`>0 AS `winner`,
-      COALESCE(MAX(`pg2`.`game` * 1e6 + `pg2`.`new_elo`) - MAX(`pg2`.`game` * 1e6), 470) AS `preview_elo`
+      -- COALESCE(MAX(`pg2`.`game` * 1e6 + `pg2`.`new_elo`) - MAX(`pg2`.`game` * 1e6), 470) AS `preview_elo`
+      COALESCE(
+        (SELECT `player_game_date`.`new_elo`
+          FROM `player_game_date`
+          WHERE `date` < `pg`.`date` AND `player_game_date`.`player` = `player`.`id`
+          ORDER BY `date` DESC LIMIT 1),
+          470
+        ) AS `preview_elo`
       FROM `player_game_date` AS `pg`
       JOIN `player` ON `pg`.`player` = `player`.`id`
       LEFT JOIN `player_game_date` AS `pg2` ON `pg2`.`player` = `player`.`id` AND `pg2`.`date` < `pg`.`date`
