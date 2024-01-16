@@ -4,7 +4,8 @@
   list($players, $err) = query(
     "SELECT `player`.`id` AS `id`, `player`.`name` AS `name`,
     `class`.`name` AS `class`, `player`.`elo` AS `elo`
-    FROM `player` JOIN `class` ON `player`.`class` = `class`.`id`");
+    FROM `player` JOIN `class` ON `player`.`class` = `class`.`id`
+    ORDER BY `player`.`elo` DESC");
   if ($err) { $players = []; }
 
   $GLOBALS["players"] = $players;
