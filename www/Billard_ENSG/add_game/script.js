@@ -33,7 +33,7 @@ function submit() {
 
   /***********************          SEND TO API         ***********************/
 
-  fetch_api("add_game.php", data).then(r => {
+  fetch_api("add_game.php", data, FLAG_DEBUG).then(r => {
     document.location.href = "..";
   }).catch(err => {
     if (err & ERROR_WRONG_VALUE) {
