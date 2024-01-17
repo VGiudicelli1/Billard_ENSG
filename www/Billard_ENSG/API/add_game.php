@@ -13,7 +13,7 @@
     API_send_result_error(ERROR_WRONG_VALUE);
   }
 
-  $date = date('Y-m-d h:i:s', strtotime($data_in["date"]));
+  $date = date('Y-m-d H:i:s', strtotime($data_in["date"]));
 
   /*****************************      GET ELO     *****************************/
   list($res, $err) = query("SELECT
