@@ -40,7 +40,7 @@
         <?=makeSelectPlayer("j3")?>
         <label for="j4">(Joueur 4)</label>
         <?=makeSelectPlayer("j4")?>
-        <div class="button" onclick="submit()">
+        <div class="button" onclick="submit_form()">
           valider
         </div>
       </form>
