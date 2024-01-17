@@ -3,7 +3,7 @@
   include_once("../../../server/Billard_ENSG/compute/compute_elo.php");
 
   /*****************************  VERIFY DATA IN  *****************************/
-  $data_in = API_get_data_in(["j1", "j3"], ["j2"=>-1, "j4"=>-1, "date"=>date('Y-m-d h:i:s')]);
+  $data_in = API_get_data_in(["j1", "j3"], ["j2"=>-1, "j4"=>-1, "date"=>date('Y-m-d H:i:s')]);
 
   $j1 = intval($data_in["j1"]);
   $j2 = intval($data_in["j2"]);
