@@ -70,7 +70,7 @@
     $j4 = count($l)==1 ? -1 : $l[1];
 
     # compute new elo
-    $players = compute_elo_v1($j1, $j2, $j3, $j4, $players);
+    $players = compute_elo($j1, $j2, $j3, $j4, $players);
 
     # control sign ∆Elo
     if (

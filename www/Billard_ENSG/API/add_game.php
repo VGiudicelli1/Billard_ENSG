@@ -48,7 +48,7 @@
 
   /*****************************    DELTA ELO     *****************************/
 
-  foreach (compute_elo_v1($j1, $j2, $j3, $j4, $players) as $id => $player_new_data) {
+  foreach (compute_elo($j1, $j2, $j3, $j4, $players) as $id => $player_new_data) {
     $players[$id]["delta_elo"] = $player_new_data["delta_elo"];
   }
 
