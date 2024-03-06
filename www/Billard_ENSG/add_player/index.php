@@ -6,14 +6,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ajouter un joueur</title>
-    <link rel="stylesheet" href="/Billard_ENSG/css/master.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="/Billard_ENSG/js/script.js" charset="utf-8"></script>
-    <script src="./script.js" charset="utf-8" defer></script>
-  </head>
+  <?=make_head("Ajouter un joueur")?>
   <body>
     <?php make_header('Ajouter un joueur'); ?>
     <div class="content">

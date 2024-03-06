@@ -4,7 +4,8 @@
   list($players, $err) = query(
     "SELECT `player`.`id` AS `id`, `player`.`name` AS `name`,
     `class`.`name` AS `class`, `player`.`elo` AS `elo`
-    FROM `player` JOIN `class` ON `player`.`class` = `class`.`id`");
+    FROM `player` JOIN `class` ON `player`.`class` = `class`.`id`
+    ORDER BY `player`.`elo` DESC");
   if ($err) { $players = []; }
 
   $GLOBALS["players"] = $players;
@@ -13,21 +14,14 @@
     <select name="<?=$name?>">
       <option value="NULL" selected>Selectionnez un joueur</option>
       <?php foreach ($GLOBALS["players"] as ["id" => $id, "name" => $name, "class"=>$classe, "elo"=>$elo]): ?>
-        <option value="<?=$id?>"><?=$name?> (<?=$classe?>) • <?=$elo?></option>
+        <option value="<?=$id?>"><?=$name?> (<?=$classe?>) • <?=round($elo*10)/10?></option>
       <?php endforeach; ?>
     </select>
   <?php }
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ajouter une partie</title>
-    <link rel="stylesheet" href="/Billard_ENSG/css/master.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="/Billard_ENSG/js/script.js" charset="utf-8"></script>
-    <script src="./script.js" charset="utf-8" defer></script>
-  </head>
+  <?=make_head("Ajouter une partie")?>
   <body>
     <?php make_header('Ajouter une partie'); ?>
     <div class="content">
@@ -46,7 +40,7 @@
         <?=makeSelectPlayer("j3")?>
         <label for="j4">(Joueur 4)</label>
         <?=makeSelectPlayer("j4")?>
-        <div class="button" onclick="submit()">
+        <div class="button" onclick="submit_form()">
           valider
         </div>
       </form>

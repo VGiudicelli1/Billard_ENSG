@@ -3,16 +3,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Billard ENSG</title>
-    <link rel="stylesheet" href="/Billard_ENSG/css/master.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="/Billard_ENSG/js/script.js" charset="utf-8"></script>
-    <script src="./script.js" charset="utf-8" defer></script>
-  </head>
+  <?=make_head("Billard ENSG")?>
   <body>
-    <?php make_header('Acceuil'); ?>
+    <?php make_header('Accueil'); ?>
     <div class="content">
       <div class="button" onclick="document.location.href='./add_game'">
         Nouvelle partie

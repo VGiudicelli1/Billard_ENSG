@@ -3,7 +3,7 @@
   include_once("../../../server/Billard_ENSG/compute/compute_elo.php");
 
   /*****************************  VERIFY DATA IN  *****************************/
-  $data_in = API_get_data_in(["j1", "j3"], ["j2"=>-1, "j4"=>-1, "date"=>date('Y-m-d h:i:s')]);
+  $data_in = API_get_data_in(["j1", "j3"], ["j2"=>-1, "j4"=>-1, "date"=>date('Y-m-d H:i:s')]);
 
   $j1 = intval($data_in["j1"]);
   $j2 = intval($data_in["j2"]);
@@ -13,7 +13,7 @@
     API_send_result_error(ERROR_WRONG_VALUE);
   }
 
-  $date = date('Y-m-d h:i:s', strtotime($data_in["date"]));
+  $date = date('Y-m-d H:i:s', strtotime($data_in["date"]));
 
   /*****************************      GET ELO     *****************************/
   list($res, $err) = query("SELECT
@@ -48,8 +48,8 @@
 
   /*****************************    DELTA ELO     *****************************/
 
-  foreach (compute_elo_v1($j1, $j2, $j3, $j4, $players) as $id => $delta_elo) {
-    $players[$id]["delta_elo"] = $delta_elo;
+  foreach (compute_elo($j1, $j2, $j3, $j4, $players) as $id => $player_new_data) {
+    $players[$id]["delta_elo"] = $player_new_data["delta_elo"];
   }
 
   /***************************** UPDATE DATABASE  *****************************/

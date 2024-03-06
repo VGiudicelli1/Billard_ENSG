@@ -4,7 +4,7 @@
 
   /*****************************  VERIFY DATA IN  *****************************/
   $date_min = date('Y-m-d h:i:s', strtotime(API_get_data_in([], ["from_date"=>0])["from_date"]));
-  
+
   list($ids, $err) = query("SELECT `id` FROM `game` WHERE `date` >= ? ORDER BY `date` ASC", "d", [$date_min]);
   if ($err) {
     API_send_result_error(ERROR_INTERN);
@@ -20,7 +20,14 @@
       `player`.`id` AS `id`,
       COUNT(`pg2`.`game`) AS `nb_games`,
       `pg`.`delta_elo`>0 AS `winner`,
-      COALESCE(MAX(`pg2`.`game` * 1e6 + `pg2`.`new_elo`) - MAX(`pg2`.`game` * 1e6), 470) AS `preview_elo`
+      -- COALESCE(MAX(`pg2`.`game` * 1e6 + `pg2`.`new_elo`) - MAX(`pg2`.`game` * 1e6), 470) AS `preview_elo`
+      COALESCE(
+        (SELECT `player_game_date`.`new_elo`
+          FROM `player_game_date`
+          WHERE `date` < `pg`.`date` AND `player_game_date`.`player` = `player`.`id`
+          ORDER BY `date` DESC LIMIT 1),
+          470
+        ) AS `preview_elo`
       FROM `player_game_date` AS `pg`
       JOIN `player` ON `pg`.`player` = `player`.`id`
       LEFT JOIN `player_game_date` AS `pg2` ON `pg2`.`player` = `player`.`id` AND `pg2`.`date` < `pg`.`date`
@@ -63,7 +70,7 @@
     $j4 = count($l)==1 ? -1 : $l[1];
 
     # compute new elo
-    $players = compute_elo_v1($j1, $j2, $j3, $j4, $players);
+    $players = compute_elo($j1, $j2, $j3, $j4, $players);
 
     # control sign ∆Elo
     if (
@@ -82,6 +89,11 @@
           "UPDATE `player_game` SET `delta_elo`=?,`new_elo`=? WHERE `player`=? AND `game`=?",
           "dddd",
           [$players[$id]["delta_elo"], $players[$id]["elo"]+$players[$id]["delta_elo"], $id, $id_game]
+        );
+        list($res, $err) = query(
+          "UPDATE `player` SET `elo`=? WHERE `id`=?",
+          "dd",
+          [$players[$id]["elo"]+$players[$id]["delta_elo"], $id]
         );
       }
     }

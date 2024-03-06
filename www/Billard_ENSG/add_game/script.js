@@ -1,6 +1,11 @@
 let form = document.querySelector("form");
 
-function submit() {
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  submit_form();
+});
+
+function submit_form() {
   let data = {
     j1: form.j1.value,
     j2: form.j2.value == "NULL" ? null : form.j2.value,
@@ -29,16 +34,18 @@ function submit() {
     return;
   }
 
-  console.log(data);
+  //console.log(data);
 
   /***********************          SEND TO API         ***********************/
 
-  fetch_api("add_game.php", data).then(r => {
+  fetch_api("add_game.php", data, FLAG_DEBUG).then(r => {
     document.location.href = "..";
   }).catch(err => {
     if (err & ERROR_WRONG_VALUE) {
       console.log("err wrong value");
+      alert("Erreur: une valeur est incorrecte");
     } else {
+      alert(err);
       throw err;
     }
   });

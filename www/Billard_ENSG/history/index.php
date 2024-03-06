@@ -3,14 +3,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Historique</title>
-    <link rel="stylesheet" href="/Billard_ENSG/css/master.css">
-    <link rel="stylesheet" href="./style.css">
-    <script src="/Billard_ENSG/js/script.js" charset="utf-8"></script>
-    <script src="./script.js" charset="utf-8" defer></script>
-  </head>
+  <?=make_head("Historique")?>
   <body>
     <?php make_header('Historique'); ?>
     <div class="content">

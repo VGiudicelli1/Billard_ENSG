@@ -44,8 +44,10 @@ ALTER TABLE `player`
 
 CREATE TABLE `game` (
   `id` SERIAL PRIMARY KEY,          -- index PK
-  `date` DATETIME NOT NULL          -- index timestamp
+  `date` DATETIME NOT NULL          -- index timestamp & unique
 );
+
+ALTER TABLE `game` ADD UNIQUE `game_date` (`date`);
 
 CREATE TABLE `player_game` (
   `player` BIGINT UNSIGNED NOT NULL, -- index PK && FK
@@ -75,36 +77,36 @@ CREATE VIEW `view_statistics_day` AS
   SELECT
   	`p`.`name` AS `player`,
     `c`.`name` AS `class`,
-    COUNT(*) AS `games`,
+    COUNT(`pg`.`game`) AS `games`,
     COUNT(case `pg`.`delta_elo` > 0 when 1 then 1 else null end) AS `W`,
   	COUNT(case `pg`.`delta_elo` <= 0 when 1 then 1 else null end) AS `L`,
     SUM(`pg`.`delta_elo`) AS `delta_elo`,
     `p`.`elo` AS `last_elo`
-  FROM `player_game` AS `pg`
-  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
-  JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
+  FROM `player` AS `p`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
+  JOIN `player_game` AS `pg` ON `pg`.`player` = `p`.`id`
+  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
   WHERE DATE(`g`.`date`) = CURRENT_DATE()
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
 
 CREATE VIEW `view_statistics_week` AS
   SELECT
   	`p`.`name` AS `player`,
     `c`.`name` AS `class`,
-    COUNT(*) AS `games`,
+    COUNT(`pg`.`game`) AS `games`,
     COUNT(case `pg`.`delta_elo` > 0 when 1 then 1 else null end) AS `W`,
   	COUNT(case `pg`.`delta_elo` <= 0 when 1 then 1 else null end) AS `L`,
     SUM(`pg`.`delta_elo`) AS `delta_elo`,
     `p`.`elo` AS `last_elo`
-  FROM `player_game` AS `pg`
-  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
-  JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
+  FROM `player` AS `p`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
+  JOIN `player_game` AS `pg` ON `pg`.`player` = `p`.`id`
+  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
   WHERE WEEK(`g`.`date`) = WEEK(CURRENT_DATE())
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
 
 
@@ -112,18 +114,19 @@ CREATE VIEW `view_statistics_all` AS
   SELECT
   	`p`.`name` AS `player`,
     `c`.`name` AS `class`,
-    COUNT(*) AS `games`,
+    COUNT(`pg`.`game`) AS `games`,
     COUNT(case `pg`.`delta_elo` > 0 when 1 then 1 else null end) AS `W`,
   	COUNT(case `pg`.`delta_elo` <= 0 when 1 then 1 else null end) AS `L`,
     SUM(`pg`.`delta_elo`) AS `delta_elo`,
     `p`.`elo` AS `last_elo`
-  FROM `player_game` AS `pg`
-  JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
-  JOIN `player` AS `p` ON `pg`.`player` = `p`.`id`
+  FROM `player` AS `p`
   JOIN `class` AS `c` ON `c`.`id` = `p`.`class`
+  LEFT JOIN `player_game` AS `pg` ON `pg`.`player` = `p`.`id`
+  LEFT JOIN `game` AS `g` ON `pg`.`game` = `g`.`id`
   GROUP BY `p`.`name`
-  ORDER BY `delta_elo` DESC
+  ORDER BY `elo` DESC
 ;
+
 
 CREATE VIEW `player_game_date` AS
   SELECT

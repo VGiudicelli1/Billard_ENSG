@@ -1,0 +1,6 @@
+Joueur;Filière;MJ;V;D;Ratio;Elo
+A;Test;3;3;0;1.00;500
+B;Test;3;2;1;0.66;480
+C;Test;3;1;2;0.33;460
+D;Test;3;0;3;0.00;440
+

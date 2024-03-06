@@ -89,4 +89,8 @@
     }
     return $data;
   }
+
+  function compute_elo($j1, $j2, $j3, $j4, $data) {
+    return compute_elo_v2($j1, $j2, $j3, $j4, $data);
+  }
  ?>
