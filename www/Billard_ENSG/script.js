@@ -36,7 +36,11 @@ function createRow(data) {
   return row;
 }
 
-fetch_api("statistics.php").then(r => {
+fetch_api("statistics.php", {
+  body: JSON.stringify({
+    delta: urlParams.get("delta")
+  })
+}).then(r => {
   let tableDay = document.querySelector("table[name=stat_day]");
   r.day_stats.forEach((item, i) => {
     tableDay.appendChild(createRow(item));
